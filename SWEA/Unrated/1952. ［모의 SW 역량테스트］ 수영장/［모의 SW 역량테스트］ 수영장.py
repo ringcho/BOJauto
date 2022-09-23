@@ -30,3 +30,14 @@ for tc in range(1, T + 1):
     res = [0 for _ in range(12)]
     dfs(0)
     print(f'#{tc} {min_v}')
+    
+    # DP
+    for i,days in enumerate(sc):
+        day_fee = res[i-1] + day * days
+        month_fee = month + res[i-1]
+        if i>=2:
+            month_3_fee = month_3 + res[i-3]
+        res[i] = min([day_fee,month_fee,month_3_fee])
+
+    min_v = min(res[-1],min_v)
+    print(f'#{tc} {min_v}')
