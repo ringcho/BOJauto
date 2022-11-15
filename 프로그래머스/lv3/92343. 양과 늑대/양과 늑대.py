@@ -7,17 +7,16 @@ def solution(info, edges):
             answer.append(sheep)
         else:
             return
-        for i in range(len(edges)):
-            p, c = map(int, edges[i])
-            child_is_wolf = info[c]
+        for edge in edges:
+            p, c = map(int, edge)
             if visited[p] and not visited[c]:
                 visited[c] = 1
-                if child_is_wolf == 1:
+                if info[c] == 1:
                     wolf += 1
                 else:
                     sheep += 1
                 find_sheep(sheep, wolf)
-                if child_is_wolf == 1:
+                if info[c] == 1:
                     wolf -= 1
                 else:
                     sheep -= 1
